@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { createTicket, Ticket } from '../state/ticket.model';
 
@@ -8,15 +8,11 @@ import { createTicket, Ticket } from '../state/ticket.model';
   styleUrls: ['./ticket-list.component.scss'],
 })
 export class TicketListComponent implements OnInit {
-  tickets$: Observable<Array<Ticket>> = of([
-    createTicket({ title: 'a', description: 'Test123' }),
-    createTicket({ title: 'b', description: 'Test123' }),
-    createTicket({ title: 'c', description: 'Test123' }),
-    createTicket({ title: 'd', description: 'Test123' }),
-    createTicket({ title: 'e', description: 'Test123' }),
-  ]);
+  @Input() tickets: Array<Ticket> | null;
 
-  constructor() {}
+  constructor() {
+    this.tickets = [];
+  }
 
   ngOnInit(): void {}
 }

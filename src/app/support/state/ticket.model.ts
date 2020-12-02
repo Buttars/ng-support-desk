@@ -10,7 +10,7 @@ export interface Ticket {
 
 export function createTicket({ title, description }: Partial<Ticket>) {
   return {
-    id: `INC`,
+    id: `INC-${title}`,
     title,
     description,
     status: 'active',

@@ -9,7 +9,15 @@ import { Ticket } from '../state/ticket.model';
 export class TicketComponent implements OnInit {
   @Input() ticket: Ticket;
 
-  constructor() {}
+  constructor() {
+    this.ticket = {
+      id: 'INC0',
+      title: '',
+      description: '',
+      priority: '',
+      status: '',
+    };
+  }
 
   ngOnInit(): void {}
 
