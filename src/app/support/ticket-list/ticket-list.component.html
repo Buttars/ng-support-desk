@@ -1,0 +1,6 @@
+<nb-card>
+  <nb-card-header>Tickets</nb-card-header>
+  <nb-list-item *ngFor="let ticket of tickets$ | async">
+    <app-ticket [ticket]="ticket"></app-ticket>
+  </nb-list-item>
+</nb-card>
