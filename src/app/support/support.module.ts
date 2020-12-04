@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NbCardModule, NbCheckboxModule, NbListModule } from '@nebular/theme';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbListModule,
+} from '@nebular/theme';
 
 import { SupportRoutingModule } from './support-routing.module';
 import { SupportComponent } from './support/support.component';
@@ -13,6 +18,7 @@ import { TicketComponent } from './ticket/ticket.component';
   imports: [
     CommonModule,
     SupportRoutingModule,
+    NbButtonModule,
     NbCardModule,
     NbListModule,
     NbCheckboxModule,

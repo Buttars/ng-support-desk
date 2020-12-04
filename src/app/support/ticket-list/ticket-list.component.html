@@ -1,5 +1,15 @@
 <nb-card>
-  <nb-card-header>Tickets</nb-card-header>
+  <nb-card-header class="flex justify-between">
+    <span>Tickets</span>
+    <button
+      nbButton
+      status="primary"
+      size="small"
+      (click)="createTicketClicked()"
+    >
+      Create
+    </button>
+  </nb-card-header>
   <nb-list-item *ngFor="let ticket of tickets">
     <app-ticket [ticket]="ticket"></app-ticket>
   </nb-list-item>

@@ -21,4 +21,8 @@ export class SupportComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  createTicket = () => {
+    alert('Create Ticket');
+  };
 }

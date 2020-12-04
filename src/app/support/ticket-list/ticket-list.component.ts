@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { createTicket, Ticket } from '../state/ticket.model';
 
@@ -9,10 +9,15 @@ import { createTicket, Ticket } from '../state/ticket.model';
 })
 export class TicketListComponent implements OnInit {
   @Input() tickets: Array<Ticket> | null;
+  @Output() createTicket = new EventEmitter();
 
   constructor() {
     this.tickets = [];
   }
 
   ngOnInit(): void {}
+
+  createTicketClicked = () => {
+    this.createTicket.emit();
+  };
 }

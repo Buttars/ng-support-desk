@@ -1,1 +1,5 @@
-<app-ticket-list [tickets]="tickets$ | async"></app-ticket-list>
+<div class="flex justify-end"></div>
+<app-ticket-list
+  [tickets]="tickets$ | async"
+  (createTicket)="createTicket()"
+></app-ticket-list>
