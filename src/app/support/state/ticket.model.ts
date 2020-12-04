@@ -8,9 +8,9 @@ export interface Ticket {
   priority: string;
 }
 
-export function createTicket({ title, description }: Partial<Ticket>) {
+export function createTicket({ id, title, description }: Partial<Ticket>) {
   return {
-    id: `INC-${title}`,
+    id,
     title,
     description,
     status: 'active',

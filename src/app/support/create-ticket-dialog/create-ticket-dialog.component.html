@@ -1,0 +1,29 @@
+<nb-card [formGroup]="form">
+  <nb-card-header>Create Ticket</nb-card-header>
+  <nb-card-body class="flex flex-col">
+    <input
+      nbInput
+      formControlName="title"
+      type="text"
+      placeholder="Title"
+      class="mb-2"
+    />
+    <textarea
+      nbInput
+      formControlName="description"
+      type="text"
+      placeholder="Description"
+    ></textarea>
+  </nb-card-body>
+  <nb-card-footer class="flex justify-end">
+    <button
+      nbButton
+      type="submit"
+      size="small"
+      status="primary"
+      (click)="createTicket()"
+    >
+      Create
+    </button>
+  </nb-card-footer>
+</nb-card>

@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Observable, of } from 'rxjs';
+import { take } from 'rxjs/operators';
+
+import { NbDialogService } from '@nebular/theme';
+
+import { CreateTicketDialogComponent } from '../create-ticket-dialog/create-ticket-dialog.component';
 
 import { createTicket, Ticket } from '../state/ticket.model';
 import { TicketsQuery } from '../state/tickets.query';
 import { TicketsService } from '../state/tickets.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-support',
@@ -15,7 +22,8 @@ export class SupportComponent implements OnInit {
 
   constructor(
     private ticketsService: TicketsService,
-    private ticketsQuery: TicketsQuery
+    private ticketsQuery: TicketsQuery,
+    private router: Router
   ) {
     this.tickets$ = this.ticketsQuery.tickets$;
   }
@@ -23,6 +31,9 @@ export class SupportComponent implements OnInit {
   ngOnInit(): void {}
 
   createTicket = () => {
-    alert('Create Ticket');
+    this.router.navigateByUrl('/create-ticket');
+    // this.ticketsService.createTicket(
+    //   createTicket({ title: 'test', description: '123' })
+    // );
   };
 }
