@@ -20,8 +20,8 @@ export class CreateTicketDialogComponent implements OnInit {
   form = new FormGroup({
     title: new FormControl(''),
     description: new FormControl(''),
-    priority: new FormControl(''),
-    status: new FormControl(''),
+    priority: new FormControl(TicketPriority.LOW),
+    status: new FormControl(TicketStatus.ACTIVE),
   });
 
   priorities = TicketPriorityLabels;

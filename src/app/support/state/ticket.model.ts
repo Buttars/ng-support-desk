@@ -18,7 +18,7 @@ export function createTicket({
   priority = TicketPriority.LOW,
 }: Partial<Ticket>) {
   return {
-    id,
+    id: `INC${id?.toString().padStart(4, '0')}`,
     title,
     description,
     status,

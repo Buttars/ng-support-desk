@@ -18,34 +18,34 @@ export class TicketsService {
     this.ticketsStore.set([
       createTicket({
         id: 0,
-        title: 'a',
+        title: 'Ticket 0',
         description: 'Test123',
       }),
 
       createTicket({
         id: 1,
-        title: 'a',
+        title: 'Ticket 1',
         description: 'Test123',
         priority: TicketPriority.LOW,
         status: TicketStatus.ACTIVE,
       }),
       createTicket({
         id: 2,
-        title: 'b',
+        title: 'Ticket 2',
         description: 'Test123',
         priority: TicketPriority.MEDIUM,
         status: TicketStatus.CANCELED,
       }),
       createTicket({
         id: 3,
-        title: 'c',
+        title: 'Ticket 3',
         description: 'Test123',
         priority: TicketPriority.HIGH,
         status: TicketStatus.CLOSED,
       }),
       createTicket({
         id: 4,
-        title: 'e',
+        title: 'Ticket 4',
         description: 'Test123',
         priority: TicketPriority.HIGHEST,
         status: TicketStatus.CANCELED,
