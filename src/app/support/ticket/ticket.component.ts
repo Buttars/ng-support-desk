@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Ticket } from '../state/ticket.model';
 
 @Component({
-  selector: 'app-ticket',
+  selector: 'tk-ticket',
   templateUrl: './ticket.component.html',
   styleUrls: ['./ticket.component.scss'],
 })

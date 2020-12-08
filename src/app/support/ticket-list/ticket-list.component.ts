@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { createTicket, Ticket } from '../state/ticket.model';
 
 @Component({
-  selector: 'app-ticket-list',
+  selector: 'tk-ticket-list',
   templateUrl: './ticket-list.component.html',
   styleUrls: ['./ticket-list.component.scss'],
 })

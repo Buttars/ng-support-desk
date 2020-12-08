@@ -5,10 +5,13 @@
 @import 'tailwindcss/utilities';
 
 @import '~@nebular/theme/styles/globals';
+
 @import 'themes.scss';
+@import 'components.scss';
 
 @include nb-install() {
   @include nb-theme-global();
+  @include tk-components();
 }
 
 body {

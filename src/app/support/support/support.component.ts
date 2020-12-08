@@ -13,7 +13,7 @@ import { TicketsService } from '../state/tickets.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-support',
+  selector: 'tk-support',
   templateUrl: './support.component.html',
   styleUrls: ['./support.component.scss'],
 })

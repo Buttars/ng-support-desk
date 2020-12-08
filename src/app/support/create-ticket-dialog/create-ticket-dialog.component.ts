@@ -5,7 +5,7 @@ import { createTicket } from '../state/ticket.model';
 import { TicketsService } from '../state/tickets.service';
 
 @Component({
-  selector: 'app-create-ticket-dialog',
+  selector: 'tk-create-ticket-dialog',
   templateUrl: './create-ticket-dialog.component.html',
   styleUrls: ['./create-ticket-dialog.component.scss'],
 })

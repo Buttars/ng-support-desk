@@ -1,7 +1,7 @@
 <div class="flex justify-end"></div>
-<app-ticket-list
+<tk-ticket-list
   [tickets]="tickets$ | async"
   (createTicket)="createTicket()"
-></app-ticket-list>
+></tk-ticket-list>
 
 <ng-template #test></ng-template>

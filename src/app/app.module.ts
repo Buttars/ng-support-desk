@@ -11,6 +11,7 @@ import { NbDialogModule, NbThemeModule } from '@nebular/theme';
 import { AppRoutingModule } from './app-routing.module';
 
 import { LayoutModule } from './layout/layout.module';
+import { ChipModule } from './chip/chip.module';
 
 import { AppComponent } from './app.component';
 
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
     NbThemeModule.forRoot(),
     NbDialogModule.forRoot({}),
     LayoutModule,
+    ChipModule,
   ],
   providers: [
     {

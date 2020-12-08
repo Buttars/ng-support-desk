@@ -1,0 +1,26 @@
+/* Components mappings - maps theme variables onto component variables */
+
+$tk-mapping: (
+  chip-dot-mode-border-radius: 0.5rem,
+  chip-dot-mode-padding: 0.3rem,
+  chip-border-radius: 1rem,
+  chip-text-font-family: text-button-font-family,
+  chip-text-font-size: text-button-medium-font-size,
+  chip-text-font-weight: text-button-font-weight,
+  chip-text-line-height: text-button-tiny-line-height,
+  chip-padding: 0.5rem 0.75rem,
+  chip-basic-background-color: background-basic-color-2,
+  chip-basic-text-color: text-basic-color,
+  chip-primary-background-color: color-primary-default,
+  chip-primary-text-color: text-control-color,
+  chip-success-background-color: color-success-default,
+  chip-success-text-color: text-control-color,
+  chip-info-background-color: color-info-default,
+  chip-info-text-color: text-control-color,
+  chip-warning-background-color: color-warning-default,
+  chip-warning-text-color: text-control-color,
+  chip-danger-background-color: color-danger-default,
+  chip-danger-text-color: text-control-color,
+  chip-control-background-color: color-control-default,
+  chip-control-text-color: color-basic-800,
+);
