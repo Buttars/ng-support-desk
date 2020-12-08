@@ -7,7 +7,13 @@
     <span>{{ title }}</span>
   </div>
   <div class="flex flex-1 justify-end">
-    {{ priority }}
-    {{ status }}
+    <div class="flex justify-between">
+      <tk-chip [status]="priorityChipStatus" class="mr-2">
+        {{ priority }}
+      </tk-chip>
+      <tk-chip [status]="statusChipStatus">
+        {{ status }}
+      </tk-chip>
+    </div>
   </div>
 </div>

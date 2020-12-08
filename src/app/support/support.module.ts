@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 import {
   NbButtonModule,
   NbCardModule,
@@ -11,11 +13,12 @@ import {
 } from '@nebular/theme';
 
 import { SupportRoutingModule } from './support-routing.module';
+import { ChipModule } from '../chip/chip.module';
+
 import { SupportComponent } from './support/support.component';
 import { TicketListComponent } from './ticket-list/ticket-list.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { CreateTicketDialogComponent } from './create-ticket-dialog/create-ticket-dialog.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NbInputModule,
     NbCheckboxModule,
     NbDialogModule.forChild({}),
+    ChipModule,
   ],
 })
 export class SupportModule {}
