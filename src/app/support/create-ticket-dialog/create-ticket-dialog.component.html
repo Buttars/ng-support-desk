@@ -1,3 +1,4 @@
+<pre>{{ form.valueChanges | async | json }}</pre>
 <nb-card [formGroup]="form">
   <nb-card-header>Create Ticket</nb-card-header>
   <nb-card-body class="flex flex-col">
@@ -8,13 +9,28 @@
       placeholder="Title"
       class="mb-2"
     />
+
     <textarea
       nbInput
       formControlName="description"
       type="text"
       placeholder="Description"
+      class="mb-2"
     ></textarea>
+
+    <nb-select placeholder="Priority" formControlName="priority" class="mb-2">
+      <nb-option *ngFor="let priority of priorities" [value]="priority.value">
+        {{ priority.label }}
+      </nb-option>
+    </nb-select>
+
+    <nb-select placeholder="Status" formControlName="status">
+      <nb-option *ngFor="let status of statuses" [value]="status.value">
+        {{ status.label }}
+      </nb-option>
+    </nb-select>
   </nb-card-body>
+
   <nb-card-footer class="flex justify-end">
     <button
       nbButton

@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:prod": "NODE_ENV=production ng build --prod"
+    "build:prod": "NODE_ENV=production ng build --prod",
+    "postinstall": "patch-package"
   },
   "private": true,
   "dependencies": {
@@ -51,10 +52,12 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "ngx-build-plus": "^10.1.1",
     "ngx-tailwind": "^1.0.0",
+    "patch-package": "^6.2.2",
     "postcss": "^8.1.10",
     "postcss-import": "^13.0.0",
     "postcss-loader": "^4.1.0",
     "postcss-scss": "^3.0.4",
+    "postinstall-postinstall": "^2.1.0",
     "protractor": "~7.0.0",
     "tailwindcss": "^2.0.1",
     "ts-node": "~8.3.0",

@@ -10,6 +10,7 @@ import {
   NbDialogModule,
   NbInputModule,
   NbListModule,
+  NbSelectModule,
 } from '@nebular/theme';
 
 import { SupportRoutingModule } from './support-routing.module';
@@ -37,6 +38,7 @@ import { CreateTicketDialogComponent } from './create-ticket-dialog/create-ticke
     NbInputModule,
     NbCheckboxModule,
     NbDialogModule.forChild({}),
+    NbSelectModule,
     ChipModule,
   ],
 })

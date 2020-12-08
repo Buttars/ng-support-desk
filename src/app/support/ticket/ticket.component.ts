@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NbComponentStatus } from '@nebular/theme';
+import { TicketPrioriyToChipStatus } from '../state/ticket-priority-to-chip-status';
 import { TicketPriority } from '../state/ticket-priority.enum';
+import { TicketStatusToChipStatus } from '../state/ticket-status-to-chip-status';
 import { TicketStatus } from '../state/ticket-status.enum';
 import { Ticket } from '../state/ticket.model';
 
@@ -11,18 +13,6 @@ import { Ticket } from '../state/ticket.model';
 })
 export class TicketComponent implements OnInit {
   @Input() ticket: Ticket;
-  private _ticketPrioriyToChipStatus = {
-    [TicketPriority.LOW]: 'primary',
-    [TicketPriority.MEDIUM]: 'success',
-    [TicketPriority.HIGH]: 'warning',
-    [TicketPriority.HIGHEST]: 'danger',
-  };
-
-  private _ticketStatuToChipStatus = {
-    [TicketStatus.ACTIVE]: 'primary',
-    [TicketStatus.CANCELED]: 'warning',
-    [TicketStatus.CLOSED]: 'danger',
-  };
 
   constructor() {
     this.ticket = {
@@ -57,10 +47,10 @@ export class TicketComponent implements OnInit {
   }
 
   get priorityChipStatus() {
-    return this._ticketPrioriyToChipStatus[this.priority] as NbComponentStatus;
+    return TicketPrioriyToChipStatus[this.priority] as NbComponentStatus;
   }
 
   get statusChipStatus() {
-    return this._ticketStatuToChipStatus[this.status] as NbComponentStatus;
+    return TicketStatusToChipStatus[this.status] as NbComponentStatus;
   }
 }

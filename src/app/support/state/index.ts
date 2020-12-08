@@ -1,4 +1,8 @@
-export * from './support.model';
-export * from './support.query';
-export * from './support.service';
-export { SupportState, SupportStore } from './support.store';
+export * from './ticket.model';
+export * from './tickets.query';
+export * from './tickets.service';
+export { TicketsState, TicketsStore } from './tickets.store';
+export * from './ticket-status.enum';
+export * from './ticket-priority.enum';
+export * from './ticket-priority-to-chip-status';
+export * from './ticket-status-to-chip-status';
