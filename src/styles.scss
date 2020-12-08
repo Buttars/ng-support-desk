@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import '~@nebular/theme/styles/globals';
+@import 'themes.scss';
+
+@include nb-install() {
+  @include nb-theme-global();
+}
 
 body {
   font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
