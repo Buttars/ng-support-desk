@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { createTicket, Ticket } from '../state/ticket.model';
+import { sortByOptions, TICKETS_SORT_BY } from '../models';
+import { Ticket } from '../state/ticket.model';
 
 @Component({
   selector: 'tk-ticket-list',
@@ -11,15 +11,20 @@ export class TicketListComponent implements OnInit {
   @Input() tickets: Array<Ticket> | null;
   @Input() allSelected: boolean = false;
   @Input() someSelected: boolean = false;
+  @Input() sortBy: TICKETS_SORT_BY;
   @Output() createTicket = new EventEmitter();
   @Output() editTicket = new EventEmitter<Ticket>();
   @Output() setAll = new EventEmitter();
   @Output() ticketSelectChanged = new EventEmitter<Ticket>();
   @Output() deleteSelected = new EventEmitter();
   @Output() completeSelected = new EventEmitter();
+  @Output() sortByUpdate = new EventEmitter();
+
+  sortByOptions = sortByOptions;
 
   constructor() {
     this.tickets = [];
+    this.sortBy = TICKETS_SORT_BY.NUMBER;
   }
 
   ngOnInit(): void {}

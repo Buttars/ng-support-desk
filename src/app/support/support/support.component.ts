@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { CreateTicketDialogComponent } from '../create-ticket-dialog/create-ticket-dialog.component';
 import { EditTicketDialogComponent } from '../edit-ticket-dialog/edit-ticket-dialog.component';
+import { TicketsSortBy, TICKETS_SORT_BY } from '../models';
 
 import { Ticket } from '../state/ticket.model';
 import { TicketsQuery } from '../state/tickets.query';
@@ -20,6 +21,7 @@ export class SupportComponent implements OnInit {
   tickets$: Observable<Array<Ticket>>;
   allSelected$: Observable<boolean>;
   someSelected$: Observable<boolean>;
+  sortBy$: Observable<TICKETS_SORT_BY>;
 
   constructor(
     private ticketsService: TicketsService,
@@ -29,6 +31,7 @@ export class SupportComponent implements OnInit {
     this.tickets$ = this.ticketsQuery.tickets$;
     this.allSelected$ = this.ticketsQuery.allSelected$;
     this.someSelected$ = this.ticketsQuery.someSelected$;
+    this.sortBy$ = this.ticketsQuery.sortBy$;
   }
 
   ngOnInit(): void {}
@@ -75,5 +78,9 @@ export class SupportComponent implements OnInit {
 
   completeSelected = () => {
     this.ticketsService.completeSelected();
+  };
+
+  sortBy = (sortBy: TICKETS_SORT_BY) => {
+    this.ticketsService.sortBy(sortBy);
   };
 }

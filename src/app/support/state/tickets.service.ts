@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ID } from '@datorama/akita';
 import { combineLatest } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { TicketPriority, TicketStatus } from '../models';
+import { TicketPriority, TicketStatus, TICKETS_SORT_BY } from '../models';
 import { createTicket, Ticket } from './ticket.model';
 import { TicketsQuery } from './tickets.query';
 import { TicketsStore } from './tickets.store';
@@ -126,6 +126,14 @@ export class TicketsService {
       }
 
       this.complete(id);
+    });
+  };
+
+  sortBy = (sortBy: TICKETS_SORT_BY) => {
+    this.ticketsStore.update({
+      ui: {
+        sortBy,
+      },
     });
   };
 }

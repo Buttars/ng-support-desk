@@ -5,15 +5,24 @@
       [indeterminate]="someSelected"
       (checkedChange)="setAll.emit($event)"
     ></nb-checkbox>
-    <button
-      *ngIf="!someSelected && !allSelected"
-      nbButton
-      status="primary"
-      size="small"
-      (click)="createTicketClicked()"
-    >
-      Create
-    </button>
+    <div class="flex">
+      <tk-filter
+        [sortByOptions]="sortByOptions"
+        [active]="sortBy"
+        (update)="sortByUpdate.emit($event)"
+        class="mr-2"
+      ></tk-filter>
+      <button
+        *ngIf="!someSelected && !allSelected"
+        nbButton
+        status="primary"
+        size="small"
+        (click)="createTicketClicked()"
+      >
+        Create
+      </button>
+    </div>
+
     <div *ngIf="someSelected || allSelected">
       <button
         nbButton
