@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+
+import { NbDialogRef } from '@nebular/theme';
 
 import { createTicket, TicketsService } from '../state';
 
@@ -27,7 +28,10 @@ export class CreateTicketDialogComponent implements OnInit {
   priorities = TicketPriorityLabels;
   statuses = TicketStatusLabels;
 
-  constructor(private ticketsService: TicketsService, private router: Router) {}
+  constructor(
+    private ticketsService: TicketsService,
+    private dialogRef: NbDialogRef<CreateTicketDialogComponent>
+  ) {}
 
   ngOnInit(): void {}
 
@@ -40,7 +44,7 @@ export class CreateTicketDialogComponent implements OnInit {
     };
 
     this.ticketsService.createTicket(createTicket(ticket));
-    this.router.navigateByUrl('/');
+    this.dialogRef.close();
   };
 
   get title() {

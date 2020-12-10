@@ -9,10 +9,6 @@ const routes: Routes = [
     path: '',
     component: SupportComponent,
   },
-  {
-    path: 'create-ticket',
-    component: CreateTicketDialogComponent,
-  },
 ];
 
 @NgModule({

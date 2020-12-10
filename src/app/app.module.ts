@@ -28,6 +28,7 @@ import { environment } from '../environments/environment';
     AkitaNgRouterStoreModule.forRoot(),
     NbThemeModule.forRoot(),
     NbDialogModule.forRoot({}),
+    NbDialogModule.forRoot({}),
     NbEvaIconsModule,
     LayoutModule,
     ChipModule,

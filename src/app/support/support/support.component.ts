@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NbDialogService } from '@nebular/theme';
 
 import { Observable, of } from 'rxjs';
+import { CreateTicketDialogComponent } from '../create-ticket-dialog/create-ticket-dialog.component';
 
 import { Ticket } from '../state/ticket.model';
 import { TicketsQuery } from '../state/tickets.query';
@@ -20,7 +22,7 @@ export class SupportComponent implements OnInit {
   constructor(
     private ticketsService: TicketsService,
     private ticketsQuery: TicketsQuery,
-    private router: Router
+    private dialogService: NbDialogService
   ) {
     this.tickets$ = this.ticketsQuery.tickets$;
     this.allSelected$ = this.ticketsQuery.allSelected$;
@@ -30,7 +32,11 @@ export class SupportComponent implements OnInit {
   ngOnInit(): void {}
 
   createTicket = () => {
-    this.router.navigateByUrl('/create-ticket');
+    this.dialogService.open(CreateTicketDialogComponent, {
+      hasBackdrop: true,
+      autoFocus: true,
+      closeOnBackdropClick: true,
+    });
   };
 
   setAll = (completed: boolean) => {
