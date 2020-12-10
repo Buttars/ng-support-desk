@@ -1,7 +1,12 @@
 <nb-card>
   <nb-card-header class="flex justify-between">
-    <span>Tickets</span>
+    <nb-checkbox
+      [checked]="allComplete"
+      [indeterminate]="someComplete"
+      (checkedChange)="setAll.emit($event)"
+    ></nb-checkbox>
     <button
+      *ngIf="!someComplete && !allComplete"
       nbButton
       status="primary"
       size="small"
@@ -9,8 +14,29 @@
     >
       Create
     </button>
+    <div *ngIf="someComplete || allComplete">
+      <button
+        nbButton
+        size="small"
+        class="mr-2"
+        (click)="completeSelected.emit()"
+      >
+        Complete
+      </button>
+      <button
+        nbButton
+        status="danger"
+        size="small"
+        (click)="deleteSelected.emit()"
+      >
+        <nb-icon icon="trash-2-outline"></nb-icon>
+      </button>
+    </div>
   </nb-card-header>
   <nb-list-item *ngFor="let ticket of tickets">
-    <tk-ticket [ticket]="ticket"></tk-ticket>
+    <tk-ticket
+      [ticket]="ticket"
+      (selectedChange)="selectChanged($event)"
+    ></tk-ticket>
   </nb-list-item>
 </nb-card>

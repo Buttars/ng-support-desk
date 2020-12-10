@@ -1,6 +1,5 @@
 import { ID } from '@datorama/akita';
-import { TicketPriority } from './ticket-priority.enum';
-import { TicketStatus } from './ticket-status.enum';
+import { TicketPriority, TicketStatus } from '../models';
 
 export interface Ticket {
   id: ID;
@@ -8,6 +7,7 @@ export interface Ticket {
   description: string;
   status: TicketStatus;
   priority: TicketPriority;
+  selected: boolean;
 }
 
 export function createTicket({
@@ -23,5 +23,6 @@ export function createTicket({
     description,
     status,
     priority,
+    selected: false,
   } as Ticket;
 }

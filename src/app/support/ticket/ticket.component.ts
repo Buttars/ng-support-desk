@@ -1,11 +1,25 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { NbComponentStatus } from '@nebular/theme';
-import { TicketPrioriyToChipStatus } from '../state/ticket-priority-to-chip-status';
-import { TicketPriority } from '../state/ticket-priority.enum';
-import { TicketStatusToChipStatus } from '../state/ticket-status-to-chip-status';
-import { TicketStatus } from '../state/ticket-status.enum';
-import { Ticket } from '../state/ticket.model';
 
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
+import { Ticket } from '../state';
+import {
+  TicketPrioriyToChipStatus,
+  TicketPriority,
+  TicketStatusToChipStatus,
+  TicketStatus,
+} from '../models';
+
+@UntilDestroy()
 @Component({
   selector: 'tk-ticket',
   templateUrl: './ticket.component.html',
@@ -13,6 +27,9 @@ import { Ticket } from '../state/ticket.model';
 })
 export class TicketComponent implements OnInit {
   @Input() ticket: Ticket;
+  @Output() selectedChange = new EventEmitter();
+
+  checkboxControl = new FormControl();
 
   constructor() {
     this.ticket = {
@@ -21,10 +38,22 @@ export class TicketComponent implements OnInit {
       description: '',
       priority: TicketPriority.LOW,
       status: TicketStatus.ACTIVE,
+      selected: false,
     };
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.checkboxControl.setValue(this.ticket.selected);
+
+    this.checkboxControl.valueChanges
+      .pipe(untilDestroyed(this))
+      .subscribe((selected) => {
+        this.selectedChange.emit({
+          ...this.ticket,
+          selected: selected,
+        } as Ticket);
+      });
+  }
 
   get id() {
     return this.ticket.id;

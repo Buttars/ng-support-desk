@@ -8,6 +8,7 @@ import {
   NbCardModule,
   NbCheckboxModule,
   NbDialogModule,
+  NbIconModule,
   NbInputModule,
   NbListModule,
   NbSelectModule,
@@ -39,6 +40,7 @@ import { CreateTicketDialogComponent } from './create-ticket-dialog/create-ticke
     NbCheckboxModule,
     NbDialogModule.forChild({}),
     NbSelectModule,
+    NbIconModule,
     ChipModule,
   ],
 })

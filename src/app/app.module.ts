@@ -7,6 +7,7 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 
 import { NbDialogModule, NbThemeModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
     AkitaNgRouterStoreModule.forRoot(),
     NbThemeModule.forRoot(),
     NbDialogModule.forRoot({}),
+    NbEvaIconsModule,
     LayoutModule,
     ChipModule,
   ],

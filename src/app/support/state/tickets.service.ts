@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TicketPriority } from './ticket-priority.enum';
-import { TicketStatus } from './ticket-status.enum';
+import { TicketPriority, TicketStatus } from '../models';
 import { createTicket, Ticket } from './ticket.model';
 import { TicketsQuery } from './tickets.query';
 import { TicketsStore } from './tickets.store';
@@ -56,5 +55,39 @@ export class TicketsService {
   createTicket = (ticket: Ticket) => {
     const id = this.ticketsQuery.getAll().length;
     this.ticketsStore.add({ ...ticket, id });
+  };
+
+  setAll = (selected: boolean) => {
+    const tickets = this.ticketsQuery.getAll();
+    tickets.forEach((ticket) =>
+      this.ticketsStore.update(ticket.id, { selected })
+    );
+  };
+
+  check = ({ id, selected }: Ticket) => {
+    this.ticketsStore.update(id, { selected });
+  };
+
+  deleteSelected = () => {
+    const tickets = this.ticketsQuery.getAll();
+    tickets.forEach(({ id, selected }) => {
+      if (!selected) {
+        return;
+      }
+
+      this.ticketsStore.remove(id);
+    });
+  };
+
+  completeSelected = () => {
+    const tickets = this.ticketsQuery.getAll();
+    tickets.forEach(({ id, selected }) => {
+      debugger;
+      if (!selected) {
+        return;
+      }
+
+      this.ticketsStore.update(id, { status: TicketStatus.CLOSED });
+    });
   };
 }

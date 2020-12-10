@@ -9,7 +9,13 @@ import { createTicket, Ticket } from '../state/ticket.model';
 })
 export class TicketListComponent implements OnInit {
   @Input() tickets: Array<Ticket> | null;
+  @Input() allComplete: boolean = false;
+  @Input() someComplete: boolean = false;
   @Output() createTicket = new EventEmitter();
+  @Output() setAll = new EventEmitter();
+  @Output() ticketSelectChanged = new EventEmitter<Ticket>();
+  @Output() deleteSelected = new EventEmitter();
+  @Output() completeSelected = new EventEmitter();
 
   constructor() {
     this.tickets = [];
@@ -19,5 +25,9 @@ export class TicketListComponent implements OnInit {
 
   createTicketClicked = () => {
     this.createTicket.emit();
+  };
+
+  selectChanged = (ticket: Ticket) => {
+    this.ticketSelectChanged.emit(ticket);
   };
 }

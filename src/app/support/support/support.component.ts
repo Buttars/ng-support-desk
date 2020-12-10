@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable, of } from 'rxjs';
-import { take } from 'rxjs/operators';
 
-import { NbDialogService } from '@nebular/theme';
-
-import { CreateTicketDialogComponent } from '../create-ticket-dialog/create-ticket-dialog.component';
-
-import { createTicket, Ticket } from '../state/ticket.model';
+import { Ticket } from '../state/ticket.model';
 import { TicketsQuery } from '../state/tickets.query';
 import { TicketsService } from '../state/tickets.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'tk-support',
@@ -19,6 +14,8 @@ import { Router } from '@angular/router';
 })
 export class SupportComponent implements OnInit {
   tickets$: Observable<Array<Ticket>>;
+  allComplete$: Observable<boolean>;
+  someComplete$: Observable<boolean>;
 
   constructor(
     private ticketsService: TicketsService,
@@ -26,14 +23,29 @@ export class SupportComponent implements OnInit {
     private router: Router
   ) {
     this.tickets$ = this.ticketsQuery.tickets$;
+    this.allComplete$ = this.ticketsQuery.allComplete$;
+    this.someComplete$ = this.ticketsQuery.someComplete$;
   }
 
   ngOnInit(): void {}
 
   createTicket = () => {
     this.router.navigateByUrl('/create-ticket');
-    // this.ticketsService.createTicket(
-    //   createTicket({ title: 'test', description: '123' })
-    // );
+  };
+
+  setAll = (completed: boolean) => {
+    this.ticketsService.setAll(completed);
+  };
+
+  ticketSelectedChanged = (ticket: Ticket) => {
+    this.ticketsService.check(ticket);
+  };
+
+  deleteSelected = () => {
+    this.ticketsService.deleteSelected();
+  };
+
+  completeSelected = () => {
+    this.ticketsService.completeSelected();
   };
 }

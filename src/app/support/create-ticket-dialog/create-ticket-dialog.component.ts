@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { createTicket, TicketsService } from '../state';
+
 import {
-  createTicket,
-  TicketsService,
   TicketStatus,
   TicketPriority,
   TicketStatusLabels,
   TicketPriorityLabels,
-} from '../state';
+} from '../models';
 
 @Component({
   selector: 'tk-create-ticket-dialog',
