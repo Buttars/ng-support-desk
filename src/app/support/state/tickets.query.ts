@@ -9,7 +9,7 @@ export class TicketsQuery extends QueryEntity<TicketsState> {
   tickets$ = this.selectAll();
   allSelected$: Observable<boolean> = this.selectAll().pipe(
     map((tickets) => {
-      if (!tickets) {
+      if (!tickets || tickets.length === 0) {
         return false;
       }
 
@@ -27,6 +27,8 @@ export class TicketsQuery extends QueryEntity<TicketsState> {
       );
     })
   );
+
+  nextTicketNumber$ = this.select((state) => state.nextTicketNumber);
 
   constructor(protected store: TicketsStore) {
     super(store);

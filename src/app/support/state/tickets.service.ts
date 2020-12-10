@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ID } from '@datorama/akita';
 import { combineLatest } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { TicketPriority, TicketStatus } from '../models';
 import { createTicket, Ticket } from './ticket.model';
 import { TicketsQuery } from './tickets.query';
@@ -52,11 +53,29 @@ export class TicketsService {
         status: TicketStatus.CANCELED,
       }),
     ]);
+    this.ticketsQuery.tickets$
+      .pipe(
+        take(1),
+        map((tickets) => tickets.length)
+      )
+      .subscribe((nextTicketNumber) => {
+        this.ticketsStore.update({ nextTicketNumber });
+      });
+  };
+
+  incrementNextTicketNumber = () => {
+    this.ticketsQuery.nextTicketNumber$
+      .pipe(take(1))
+      .subscribe((nextTicketNumber) => {
+        this.ticketsStore.update({ nextTicketNumber: nextTicketNumber + 1 });
+      });
   };
 
   createTicket = (ticket: Ticket) => {
-    const id = this.ticketsQuery.getAll().length;
-    this.ticketsStore.add({ ...ticket, id });
+    this.ticketsQuery.nextTicketNumber$.pipe(take(1)).subscribe((id) => {
+      this.ticketsStore.add(createTicket({ ...ticket, id }));
+      this.incrementNextTicketNumber();
+    });
   };
 
   update = (ticket: Ticket) => {
