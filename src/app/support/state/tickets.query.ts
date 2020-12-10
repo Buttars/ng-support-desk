@@ -7,7 +7,7 @@ import { TicketsState, TicketsStore } from './tickets.store';
 @Injectable({ providedIn: 'root' })
 export class TicketsQuery extends QueryEntity<TicketsState> {
   tickets$ = this.selectAll();
-  allComplete$: Observable<boolean> = this.selectAll().pipe(
+  allSelected$: Observable<boolean> = this.selectAll().pipe(
     map((tickets) => {
       if (!tickets) {
         return false;
@@ -16,9 +16,9 @@ export class TicketsQuery extends QueryEntity<TicketsState> {
       return tickets.every((ticket) => ticket.selected);
     })
   );
-  someComplete$: Observable<boolean> = combineLatest([
+  someSelected$: Observable<boolean> = combineLatest([
     this.selectAll(),
-    this.allComplete$,
+    this.allSelected$,
   ]).pipe(
     map(([tickets, allComplete]) => {
       return (

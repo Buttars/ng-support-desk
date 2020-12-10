@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { ID } from '@datorama/akita';
+import { combineLatest } from 'rxjs';
 import { TicketPriority, TicketStatus } from '../models';
 import { createTicket, Ticket } from './ticket.model';
 import { TicketsQuery } from './tickets.query';
@@ -68,8 +70,13 @@ export class TicketsService {
     this.ticketsStore.update(id, { selected });
   };
 
+  complete = (id: ID) => {
+    this.ticketsStore.update(id, { status: TicketStatus.CLOSED });
+  };
+
   deleteSelected = () => {
     const tickets = this.ticketsQuery.getAll();
+
     tickets.forEach(({ id, selected }) => {
       if (!selected) {
         return;
@@ -81,13 +88,17 @@ export class TicketsService {
 
   completeSelected = () => {
     const tickets = this.ticketsQuery.getAll();
-    tickets.forEach(({ id, selected }) => {
-      debugger;
+
+    tickets.forEach(({ id, selected, status }) => {
       if (!selected) {
         return;
       }
 
-      this.ticketsStore.update(id, { status: TicketStatus.CLOSED });
+      if (status === TicketStatus.CANCELED) {
+        return;
+      }
+
+      this.complete(id);
     });
   };
 }

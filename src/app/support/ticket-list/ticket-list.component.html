@@ -1,12 +1,12 @@
 <nb-card>
   <nb-card-header class="flex justify-between">
     <nb-checkbox
-      [checked]="allComplete"
-      [indeterminate]="someComplete"
+      [checked]="allSelected"
+      [indeterminate]="someSelected"
       (checkedChange)="setAll.emit($event)"
     ></nb-checkbox>
     <button
-      *ngIf="!someComplete && !allComplete"
+      *ngIf="!someSelected && !allSelected"
       nbButton
       status="primary"
       size="small"
@@ -14,7 +14,7 @@
     >
       Create
     </button>
-    <div *ngIf="someComplete || allComplete">
+    <div *ngIf="someSelected || allSelected">
       <button
         nbButton
         size="small"

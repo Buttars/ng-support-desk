@@ -14,8 +14,8 @@ import { TicketsService } from '../state/tickets.service';
 })
 export class SupportComponent implements OnInit {
   tickets$: Observable<Array<Ticket>>;
-  allComplete$: Observable<boolean>;
-  someComplete$: Observable<boolean>;
+  allSelected$: Observable<boolean>;
+  someSelected$: Observable<boolean>;
 
   constructor(
     private ticketsService: TicketsService,
@@ -23,8 +23,8 @@ export class SupportComponent implements OnInit {
     private router: Router
   ) {
     this.tickets$ = this.ticketsQuery.tickets$;
-    this.allComplete$ = this.ticketsQuery.allComplete$;
-    this.someComplete$ = this.ticketsQuery.someComplete$;
+    this.allSelected$ = this.ticketsQuery.allSelected$;
+    this.someSelected$ = this.ticketsQuery.someSelected$;
   }
 
   ngOnInit(): void {}
