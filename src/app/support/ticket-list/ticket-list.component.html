@@ -37,6 +37,7 @@
     <tk-ticket
       [ticket]="ticket"
       (selectedChange)="selectChanged($event)"
+      (editTicket)="editTicket.emit(ticket)"
     ></tk-ticket>
   </nb-list-item>
 </nb-card>

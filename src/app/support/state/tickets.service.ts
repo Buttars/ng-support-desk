@@ -59,11 +59,19 @@ export class TicketsService {
     this.ticketsStore.add({ ...ticket, id });
   };
 
+  update = (ticket: Ticket) => {
+    if (!ticket) {
+      return;
+    }
+
+    this.ticketsStore.update(ticket.id, ticket);
+  };
+
   setAll = (selected: boolean) => {
     const tickets = this.ticketsQuery.getAll();
-    tickets.forEach((ticket) =>
-      this.ticketsStore.update(ticket.id, { selected })
-    );
+    tickets.forEach((ticket) => {
+      this.ticketsStore.update(ticket.id, { selected });
+    });
   };
 
   check = ({ id, selected }: Ticket) => {

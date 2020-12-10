@@ -28,6 +28,7 @@ import {
 export class TicketComponent implements OnInit {
   @Input() ticket: Ticket;
   @Output() selectedChange = new EventEmitter();
+  @Output() editTicket = new EventEmitter();
 
   checkboxControl = new FormControl();
 

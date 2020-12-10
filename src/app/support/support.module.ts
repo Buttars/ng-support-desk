@@ -21,6 +21,7 @@ import { SupportComponent } from './support/support.component';
 import { TicketListComponent } from './ticket-list/ticket-list.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { CreateTicketDialogComponent } from './create-ticket-dialog/create-ticket-dialog.component';
+import { EditTicketDialogComponent } from './edit-ticket-dialog/edit-ticket-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CreateTicketDialogComponent } from './create-ticket-dialog/create-ticke
     TicketListComponent,
     TicketComponent,
     CreateTicketDialogComponent,
+    EditTicketDialogComponent,
   ],
   imports: [
     CommonModule,

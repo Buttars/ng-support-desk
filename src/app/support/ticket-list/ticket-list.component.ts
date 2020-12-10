@@ -12,6 +12,7 @@ export class TicketListComponent implements OnInit {
   @Input() allSelected: boolean = false;
   @Input() someSelected: boolean = false;
   @Output() createTicket = new EventEmitter();
+  @Output() editTicket = new EventEmitter<Ticket>();
   @Output() setAll = new EventEmitter();
   @Output() ticketSelectChanged = new EventEmitter<Ticket>();
   @Output() deleteSelected = new EventEmitter();

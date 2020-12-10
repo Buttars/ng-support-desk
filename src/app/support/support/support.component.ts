@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 
 import { Observable, of } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { CreateTicketDialogComponent } from '../create-ticket-dialog/create-ticket-dialog.component';
+import { EditTicketDialogComponent } from '../edit-ticket-dialog/edit-ticket-dialog.component';
 
 import { Ticket } from '../state/ticket.model';
 import { TicketsQuery } from '../state/tickets.query';
@@ -37,6 +39,26 @@ export class SupportComponent implements OnInit {
       autoFocus: true,
       closeOnBackdropClick: true,
     });
+  };
+
+  editTicket = (ticket: Ticket) => {
+    this.dialogService
+      .open(EditTicketDialogComponent, {
+        hasBackdrop: true,
+        autoFocus: true,
+        closeOnBackdropClick: true,
+        context: {
+          ticket,
+        },
+      })
+      .onClose.pipe(take(1))
+      .subscribe((ticket: Ticket | null) => {
+        if (!ticket) {
+          return;
+        }
+
+        this.ticketsService.update(ticket);
+      });
   };
 
   setAll = (completed: boolean) => {

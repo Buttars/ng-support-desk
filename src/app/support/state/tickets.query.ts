@@ -20,10 +20,10 @@ export class TicketsQuery extends QueryEntity<TicketsState> {
     this.selectAll(),
     this.allSelected$,
   ]).pipe(
-    map(([tickets, allComplete]) => {
+    map(([tickets, allSelected]) => {
       return (
         tickets?.filter((ticket) => ticket.selected === true).length > 0 &&
-        !allComplete
+        !allSelected
       );
     })
   );

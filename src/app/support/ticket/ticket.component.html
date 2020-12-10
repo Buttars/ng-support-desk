@@ -1,6 +1,13 @@
-<div class="flex flex-row flex-grow w-100">
+<div
+  class="flex flex-row flex-grow w-100 cursor-pointer"
+  (click)="editTicket.emit()"
+>
   <div class="flex flex-row flex-1">
-    <nb-checkbox [formControl]="checkboxControl" class="mr-2"></nb-checkbox>
+    <nb-checkbox
+      [formControl]="checkboxControl"
+      class="mr-2"
+      (click)="$event.stopPropagation()"
+    ></nb-checkbox>
     <span class="block">{{ id }}</span>
   </div>
   <div class="flex-none">

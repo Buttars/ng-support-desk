@@ -1,9 +1,10 @@
 <div class="flex justify-end"></div>
 <tk-ticket-list
   [tickets]="tickets$ | async"
-  [someSelected]="(allSelected$ | async)!"
+  [allSelected]="(allSelected$ | async)!"
   [someSelected]="(someSelected$ | async)!"
   (createTicket)="createTicket()"
+  (editTicket)="editTicket($event)"
   (setAll)="setAll($event)"
   (ticketSelectChanged)="ticketSelectedChanged($event)"
   (deleteSelected)="deleteSelected()"
