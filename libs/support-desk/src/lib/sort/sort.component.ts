@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { TicketsSortBy, TICKETS_SORT_BY } from '../models';
 
 @Component({
-  selector: 'tk-sort',
+  selector: 'sd-sort',
   templateUrl: './sort.component.html',
   styleUrls: ['./sort.component.scss'],
 })

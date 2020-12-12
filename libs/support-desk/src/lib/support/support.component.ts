@@ -16,7 +16,7 @@ import { EditTicketDialogComponent } from '../edit-ticket-dialog/edit-ticket-dia
 
 @UntilDestroy()
 @Component({
-  selector: 'tk-support',
+  selector: 'sd-support',
   templateUrl: './support.component.html',
   styleUrls: ['./support.component.scss'],
 })

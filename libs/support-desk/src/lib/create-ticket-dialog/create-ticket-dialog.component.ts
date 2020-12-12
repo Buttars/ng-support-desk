@@ -13,7 +13,7 @@ import {
 } from '../models';
 
 @Component({
-  selector: 'tk-create-ticket-dialog',
+  selector: 'sd-create-ticket-dialog',
   templateUrl: './create-ticket-dialog.component.html',
   styleUrls: ['./create-ticket-dialog.component.scss'],
 })

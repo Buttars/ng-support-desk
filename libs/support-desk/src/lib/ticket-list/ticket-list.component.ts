@@ -7,7 +7,7 @@ import { Ticket } from '../state/ticket.model';
 
 @UntilDestroy()
 @Component({
-  selector: 'tk-ticket-list',
+  selector: 'sd-ticket-list',
   templateUrl: './ticket-list.component.html',
   styleUrls: ['./ticket-list.component.scss'],
 })

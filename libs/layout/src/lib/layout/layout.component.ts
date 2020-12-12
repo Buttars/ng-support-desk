@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'tk-layout',
+  selector: 'sd-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })

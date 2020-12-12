@@ -3,5 +3,5 @@
 
 @import 'mapping';
 
-$theme: map-merge($tk-mapping, (/* Custom properties here. */));
+$theme: map-merge($sdmapping, (/* Custom properties here. */));
 $nb-themes: nb-register-theme($theme, default, default);

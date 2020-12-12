@@ -1,8 +1,8 @@
 {
   "extends": "../../tslint.json",
   "rules": {
-    "directive-selector": [true, "attribute", "ngSupportDesk", "camelCase"],
-    "component-selector": [true, "element", "ng-support-desk", "kebab-case"]
+    "directive-selector": [true, "attribute", "sd", "damelCase"],
+    "component-selector": [true, "element", "sd", "kebab-case"]
   },
   "linterOptions": {
     "exclude": ["!**/*"]

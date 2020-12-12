@@ -1,5 +1,5 @@
 <div class="flex justify-end"></div>
-<tk-ticket-list
+<sd-ticket-list
   [tickets]="tickets$ | async"
   [allSelected]="(allSelected$ | async)!"
   [someSelected]="(someSelected$ | async)!"
@@ -11,6 +11,6 @@
   (deleteSelected)="deleteSelected()"
   (completeSelected)="completeSelected()"
   (sortByUpdate)="sortBy($event)"
-></tk-ticket-list>
+></sd-ticket-list>
 
 <ng-template #test></ng-template>

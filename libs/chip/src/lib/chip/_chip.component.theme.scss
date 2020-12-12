@@ -1,5 +1,5 @@
-@mixin tk-chip() {
-  tk-chip {
+@mixin sdchip() {
+  sd-chip {
     border-radius: nb-theme(chip-border-radius);
     font-family: nb-theme(chip-text-font-family);
     font-size: nb-theme(chip-text-font-size);
@@ -9,7 +9,7 @@
   }
 
   @each $status in nb-get-statuses() {
-    tk-chip.status-#{$status} {
+    sd-chip.status-#{$status} {
       color: nb-theme(chip-#{$status}-text-color);
       background-color: nb-theme(chip-#{$status}-background-color);
     }

@@ -21,7 +21,7 @@ import {
 
 @UntilDestroy()
 @Component({
-  selector: 'tk-ticket',
+  selector: 'sd-ticket',
   templateUrl: './ticket.component.html',
   styleUrls: ['./ticket.component.scss'],
 })

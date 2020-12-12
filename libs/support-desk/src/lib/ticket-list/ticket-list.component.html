@@ -6,12 +6,12 @@
       (checkedChange)="setAll.emit($event)"
     ></nb-checkbox>
     <div *ngIf="!someSelected && !allSelected" class="flex">
-      <tk-sort
+      <sd-sort
         [sortByOptions]="sortByOptions"
         [active]="sortBy"
         (update)="sortByUpdate.emit($event)"
         class="mr-2"
-      ></tk-sort>
+      ></sd-sort>
       <button
         nbButton
         status="primary"
@@ -43,10 +43,10 @@
     </div>
   </nb-card-header>
   <nb-list-item *ngFor="let ticket of tickets">
-    <tk-ticket
+    <sd-ticket
       [ticket]="ticket"
       (selectedChange)="selectChanged($event)"
       (editTicket)="editTicket.emit(ticket)"
-    ></tk-ticket>
+    ></sd-ticket>
   </nb-list-item>
 </nb-card>

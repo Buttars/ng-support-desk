@@ -1,5 +1,5 @@
 @import '../../../libs/chip/src/lib/chip/chip.component.theme';
 
-@mixin tk-components() {
-  @include tk-chip();
+@mixin sdcomponents() {
+  @include sdchip();
 }
