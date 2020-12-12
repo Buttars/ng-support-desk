@@ -20,7 +20,9 @@
               "apps/ng-support-desk/src/favicon.ico",
               "apps/ng-support-desk/src/assets"
             ],
-            "styles": ["apps/ng-support-desk/src/styles.scss"],
+            "styles": [
+              "apps/ng-support-desk/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -79,12 +81,17 @@
               "apps/ng-support-desk/tsconfig.spec.json",
               "apps/ng-support-desk/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ng-support-desk/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ng-support-desk/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/ng-support-desk"],
+          "outputs": [
+            "coverage/apps/ng-support-desk"
+          ],
           "options": {
             "jestConfig": "apps/ng-support-desk/jest.config.js",
             "passWithNoTests": true
@@ -113,8 +120,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/ng-support-desk-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ng-support-desk-e2e/**/*"]
+            "tsConfig": [
+              "apps/ng-support-desk-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ng-support-desk-e2e/**/*"
+            ]
           }
         }
       }
@@ -127,12 +139,16 @@
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "assets": [
+              "apps/api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -157,12 +173,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/api/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/api/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/api"],
+          "outputs": [
+            "coverage/apps/api"
+          ],
           "options": {
             "jestConfig": "apps/api/jest.config.js",
             "passWithNoTests": true
@@ -178,14 +198,109 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/api-interfaces/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/api-interfaces/**/*.ts"
+            ]
+          }
+        }
+      }
+    },
+    "support-desk": {
+      "projectType": "library",
+      "root": "libs/support-desk",
+      "sourceRoot": "libs/support-desk/src",
+      "prefix": "ng-support-desk",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/support-desk/tsconfig.lib.json",
+              "libs/support-desk/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/support-desk/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/support-desk"
+          ],
+          "options": {
+            "jestConfig": "libs/support-desk/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "layout": {
+      "projectType": "library",
+      "root": "libs/layout",
+      "sourceRoot": "libs/layout/src",
+      "prefix": "ng-support-desk",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/layout/tsconfig.lib.json",
+              "libs/layout/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/layout/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/layout"
+          ],
+          "options": {
+            "jestConfig": "libs/layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "chip": {
+      "projectType": "library",
+      "root": "libs/chip",
+      "sourceRoot": "libs/chip/src",
+      "prefix": "ng-support-desk",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/chip/tsconfig.lib.json",
+              "libs/chip/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/chip/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/chip"
+          ],
+          "options": {
+            "jestConfig": "libs/chip/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@datorama/akita"
   },
   "schematics": {
     "@nrwl/angular": {

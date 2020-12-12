@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ng-support-desk/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@ng-support-desk/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@ng-support-desk/support-desk": ["libs/support-desk/src/index.ts"],
+      "@ng-support-desk/layout": ["libs/layout/src/index.ts"],
+      "@ng-support-desk/chip": ["libs/chip/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
