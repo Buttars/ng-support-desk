@@ -18,7 +18,7 @@ import { ChipModule } from '@ng-support-desk/chip';
 import { SupportDeskRoutingModule } from './support-desk-routing.module';
 
 import { SupportComponent } from './support/support.component';
-import { FilterComponent } from './filter/filter.component';
+import { SortComponent } from './sort/sort.component';
 import { EditTicketDialogComponent } from './edit-ticket-dialog/edit-ticket-dialog.component';
 import { CreateTicketDialogComponent } from './create-ticket-dialog/create-ticket-dialog.component';
 import { TicketComponent } from './ticket/ticket.component';
@@ -41,7 +41,7 @@ import { TicketListComponent } from './ticket-list/ticket-list.component';
   ],
   declarations: [
     SupportComponent,
-    FilterComponent,
+    SortComponent,
     EditTicketDialogComponent,
     CreateTicketDialogComponent,
     TicketComponent,

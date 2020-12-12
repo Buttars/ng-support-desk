@@ -3,11 +3,11 @@ import { FormControl } from '@angular/forms';
 import { TicketsSortBy, TICKETS_SORT_BY } from '../models';
 
 @Component({
-  selector: 'tk-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss'],
+  selector: 'tk-sort',
+  templateUrl: './sort.component.html',
+  styleUrls: ['./sort.component.scss'],
 })
-export class FilterComponent implements OnInit {
+export class SortComponent implements OnInit {
   @Input() active: TICKETS_SORT_BY;
   @Input() sortByOptions: Array<TicketsSortBy>;
   @Output() update = new EventEmitter<TicketsSortBy>();

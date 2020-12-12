@@ -6,12 +6,12 @@
       (checkedChange)="setAll.emit($event)"
     ></nb-checkbox>
     <div *ngIf="!someSelected && !allSelected" class="flex">
-      <tk-filter
+      <tk-sort
         [sortByOptions]="sortByOptions"
         [active]="sortBy"
         (update)="sortByUpdate.emit($event)"
         class="mr-2"
-      ></tk-filter>
+      ></tk-sort>
       <button
         nbButton
         status="primary"
