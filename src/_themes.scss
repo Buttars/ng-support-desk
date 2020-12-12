@@ -1,7 +1,0 @@
-@import '~@nebular/theme/styles/theming';
-@import '~@nebular/theme/styles/themes/default';
-
-@import 'mapping';
-
-$theme: map-merge($tk-mapping, (/* Custom properties here. */));
-$nb-themes: nb-register-theme($theme, default, default);
