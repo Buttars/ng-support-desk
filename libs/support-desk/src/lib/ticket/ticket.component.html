@@ -1,5 +1,5 @@
 <div class="flex justify-between cursor-pointer" (click)="editTicket.emit()">
-  <div class="flex">
+  <div class="flex mr-2">
     <nb-checkbox
       [formControl]="checkboxControl"
       class="mr-2"
@@ -8,7 +8,7 @@
     <span class="block">{{ id }}</span>
   </div>
 
-  <div class="flex">
+  <div class="flex truncate">
     <span>{{ title }}</span>
   </div>
 

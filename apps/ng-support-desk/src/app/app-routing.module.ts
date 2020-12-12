@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import * as SupportModule from '@ng-support-desk/support-desk';
 
 const routes: Routes = [
   {

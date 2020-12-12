@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import { sortByOptions, TICKETS_SORT_BY } from '../models';
 import { Ticket } from '../state/ticket.model';
 
+@UntilDestroy()
 @Component({
   selector: 'tk-ticket-list',
   templateUrl: './ticket-list.component.html',
@@ -9,8 +13,8 @@ import { Ticket } from '../state/ticket.model';
 })
 export class TicketListComponent implements OnInit {
   @Input() tickets: Array<Ticket> | null;
-  @Input() allSelected: boolean = false;
-  @Input() someSelected: boolean = false;
+  @Input() allSelected = false;
+  @Input() someSelected = false;
   @Input() sortBy: TICKETS_SORT_BY;
   @Output() createTicket = new EventEmitter();
   @Output() editTicket = new EventEmitter<Ticket>();

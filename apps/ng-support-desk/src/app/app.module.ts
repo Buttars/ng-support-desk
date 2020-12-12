@@ -24,7 +24,6 @@ import { environment } from '../environments/environment';
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     NbThemeModule.forRoot(),
     NbDialogModule.forRoot({}),
-    NbDialogModule.forRoot({}),
     NbEvaIconsModule,
   ],
   providers: [

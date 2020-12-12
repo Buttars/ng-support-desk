@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NbDialogService } from '@nebular/theme';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { Observable, of } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
+
+import { NbDialogService } from '@nebular/theme';
+
+import { UntilDestroy } from '@ngneat/until-destroy';
+
+import { TICKETS_SORT_BY } from '../models';
+import { Ticket, TicketsQuery, TicketsService } from '../state';
+
 import { CreateTicketDialogComponent } from '../create-ticket-dialog/create-ticket-dialog.component';
 import { EditTicketDialogComponent } from '../edit-ticket-dialog/edit-ticket-dialog.component';
-import { TicketsSortBy, TICKETS_SORT_BY } from '../models';
 
-import { Ticket } from '../state/ticket.model';
-import { TicketsQuery } from '../state/tickets.query';
-import { TicketsService } from '../state/tickets.service';
-
+@UntilDestroy()
 @Component({
   selector: 'tk-support',
   templateUrl: './support.component.html',
@@ -26,12 +29,17 @@ export class SupportComponent implements OnInit {
   constructor(
     private ticketsService: TicketsService,
     private ticketsQuery: TicketsQuery,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    private breakpointObserver: BreakpointObserver
   ) {
     this.tickets$ = this.ticketsQuery.tickets$;
     this.allSelected$ = this.ticketsQuery.allSelected$;
     this.someSelected$ = this.ticketsQuery.someSelected$;
     this.sortBy$ = this.ticketsQuery.sortBy$;
+
+    const isSmall$ = breakpointObserver
+      .observe([Breakpoints.Small])
+      .pipe(map((res) => res.matches));
   }
 
   ngOnInit(): void {}
@@ -55,12 +63,12 @@ export class SupportComponent implements OnInit {
         },
       })
       .onClose.pipe(take(1))
-      .subscribe((ticket: Ticket | null) => {
-        if (!ticket) {
+      .subscribe((t: Ticket | null) => {
+        if (!t) {
           return;
         }
 
-        this.ticketsService.update(ticket);
+        this.ticketsService.update(t);
       });
   };
 

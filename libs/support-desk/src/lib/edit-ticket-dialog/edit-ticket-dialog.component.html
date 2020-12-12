@@ -1,5 +1,9 @@
 <nb-card>
-  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-header>
+    <span class="title truncate block">
+      {{ title }}
+    </span>
+  </nb-card-header>
 
   <nb-card-body [formGroup]="form" class="flex flex-col">
     <input
