@@ -1,0 +1,26 @@
+<div
+  class="flex flex-row flex-grow w-100 cursor-pointer"
+  (click)="editTicket.emit()"
+>
+  <div class="flex flex-row flex-1">
+    <nb-checkbox
+      [formControl]="checkboxControl"
+      class="mr-2"
+      (click)="$event.stopPropagation()"
+    ></nb-checkbox>
+    <span class="block">{{ id }}</span>
+  </div>
+  <div class="flex-none">
+    <span>{{ title }}</span>
+  </div>
+  <div class="flex flex-1 justify-end">
+    <div class="chips flex justify-between">
+      <tk-chip [status]="priorityChipStatus" class="mr-2">
+        {{ priority }}
+      </tk-chip>
+      <tk-chip [status]="statusChipStatus">
+        {{ status }}
+      </tk-chip>
+    </div>
+  </div>
+</div>
