@@ -1,5 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Ticket } from '@ng-support-desk/api-interfaces';
+import {
+  CreateTicketDto,
+  Ticket,
+  TicketPriority,
+  TicketStatus,
+} from '@ng-support-desk/api-interfaces';
 
 @Injectable()
 export class AppService {
@@ -76,9 +81,9 @@ export class AppService {
   createTicket = ({
     title,
     description,
-    priority = 'low',
-    status = 'active',
-  }: Partial<Ticket>): Ticket => {
+    priority = TicketPriority.LOW,
+    status = TicketStatus.ACTIVE,
+  }: CreateTicketDto): Ticket => {
     const id = `INC${this.nextTicketId.toString().padStart(4, '0')}`;
     this.nextTicketId = this.nextTicketId + 1;
 

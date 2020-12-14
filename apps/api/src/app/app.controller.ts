@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
-import { Message, Ticket } from '@ng-support-desk/api-interfaces';
+import { CreateTicketDto, Ticket } from '@ng-support-desk/api-interfaces';
 
 import { AppService } from './app.service';
 
@@ -14,8 +14,8 @@ export class AppController {
   }
 
   @Post('tickets/create')
-  createTicket(@Body() ticket: Ticket): Ticket {
-    return this.appService.createTicket(ticket);
+  createTicket(@Body() createTicketDto: CreateTicketDto): Ticket {
+    return this.appService.createTicket(createTicketDto);
   }
 
   @Get('tickets/:id')
