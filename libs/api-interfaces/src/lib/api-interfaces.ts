@@ -1,7 +1,3 @@
-export interface Message {
-  message: string;
-}
-
 export enum TicketStatus {
   ACTIVE = 'active',
   CLOSED = 'closed',
