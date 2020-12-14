@@ -1,6 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 
-import { Message } from '@ng-support-desk/api-interfaces';
+import { Message, Ticket } from '@ng-support-desk/api-interfaces';
 
 import { AppService } from './app.service';
 
@@ -8,8 +8,23 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('hello')
-  getData(): Message {
-    return this.appService.getData();
+  @Get('tickets')
+  getTickets(): Array<Ticket> {
+    return this.appService.getTickets();
+  }
+
+  @Post('tickets/create')
+  createTicket(@Body() ticket: Ticket): Ticket {
+    return this.appService.createTicket(ticket);
+  }
+
+  @Get('tickets/:id')
+  getTicket(@Param() { id }): Ticket {
+    return this.appService.getTicket(id);
+  }
+
+  @Post('tickets/:id')
+  updateTicket(@Body() ticket: Ticket): Ticket {
+    return this.appService.updateTicket(ticket);
   }
 }

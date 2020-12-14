@@ -1776,7 +1776,7 @@
     minimatch "3.0.4"
     tslib "^2.0.0"
 
-"@nrwl/nest@11.0.1":
+"@nrwl/nest@^11.0.1":
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/@nrwl/nest/-/nest-11.0.1.tgz#7f2cfbd20267e8509e7a165e7b510bcfec1d9b9e"
   integrity sha512-2lDdM2oyQ1E1YrHvHJfQ0s4mkUBCRdcJr93T/2SUHNFEsxsQfJvzmh3OLPiKsnZwHO6IM1FEnRvFfdIVo7IEXw==
