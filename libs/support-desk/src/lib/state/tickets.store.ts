@@ -4,7 +4,6 @@ import { TICKETS_SORT_BY } from '../models';
 import { Ticket } from './ticket.model';
 
 export interface TicketsState extends EntityState<Ticket> {
-  nextTicketNumber: number;
   ui: {
     sortBy: TICKETS_SORT_BY;
   };

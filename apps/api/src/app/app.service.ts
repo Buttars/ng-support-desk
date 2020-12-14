@@ -18,37 +18,37 @@ export class AppService {
   }
 
   initalizeTickets = () => {
-    const tickets: Array<Partial<Ticket>> = [
+    const tickets: Array<CreateTicketDto> = [
       {
         title: 'Ticket 0',
         description: 'Test123',
         status: 'active',
         priority: 'low',
-      },
+      } as CreateTicketDto,
       {
         title: 'Ticket 1',
         description: 'Test123',
         priority: 'low',
         status: 'active',
-      },
+      } as CreateTicketDto,
       {
         title: 'Ticket 2',
         description: 'Test123',
         priority: 'medium',
         status: 'canceled',
-      },
+      } as CreateTicketDto,
       {
         title: 'Ticket 3',
         description: 'Test123',
         priority: 'high',
         status: 'closed',
-      },
+      } as CreateTicketDto,
       {
         title: 'Ticket 4',
         description: 'Test123',
         priority: 'highest',
         status: 'canceled',
-      },
+      } as CreateTicketDto,
     ];
 
     tickets.forEach((ticket) => {
@@ -83,14 +83,14 @@ export class AppService {
     description,
     priority = TicketPriority.LOW,
     status = TicketStatus.ACTIVE,
-  }: CreateTicketDto): Ticket => {
+  }: CreateTicketDto): Array<Ticket> => {
     const id = `INC${this.nextTicketId.toString().padStart(4, '0')}`;
     this.nextTicketId = this.nextTicketId + 1;
 
     const ticket = { id, title, description, priority, status } as Ticket;
     this._tickets.push(ticket);
 
-    return ticket;
+    return this._tickets;
   };
 
   updateTicket = (ticket: Ticket): Ticket => {
@@ -107,5 +107,12 @@ export class AppService {
     this._tickets = tickets;
 
     return ticket;
+  };
+
+  deleteTicket = (id: string) => {
+    const tickets = this._tickets.filter((ticket) => ticket.id !== id);
+    this._tickets = tickets;
+
+    return tickets;
   };
 }

@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { filter, map, switchMap, take } from 'rxjs/operators';
+
 import { ID } from '@datorama/akita';
-import { combineLatest } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+
 import { TicketPriority, TicketStatus, TICKETS_SORT_BY } from '../models';
 import { createTicket, Ticket } from './ticket.model';
 import { TicketsQuery } from './tickets.query';
@@ -9,7 +12,10 @@ import { TicketsStore } from './tickets.store';
 
 @Injectable({ providedIn: 'root' })
 export class TicketsService {
+  private url = 'http://localhost:3333/api/tickets';
+
   constructor(
+    private http: HttpClient,
     private ticketsStore: TicketsStore,
     private ticketsQuery: TicketsQuery
   ) {
@@ -17,65 +23,23 @@ export class TicketsService {
   }
 
   initialize = () => {
-    this.ticketsStore.set([
-      createTicket({
-        id: 0,
-        title: 'Ticket 0',
-        description: 'Test123',
-      }),
-
-      createTicket({
-        id: 1,
-        title: 'Ticket 1',
-        description: 'Test123',
-        priority: TicketPriority.LOW,
-        status: TicketStatus.ACTIVE,
-      }),
-      createTicket({
-        id: 2,
-        title: 'Ticket 2',
-        description: 'Test123',
-        priority: TicketPriority.MEDIUM,
-        status: TicketStatus.CANCELED,
-      }),
-      createTicket({
-        id: 3,
-        title: 'Ticket 3',
-        description: 'Test123',
-        priority: TicketPriority.HIGH,
-        status: TicketStatus.CLOSED,
-      }),
-      createTicket({
-        id: 4,
-        title: 'Ticket 4',
-        description: 'Test123',
-        priority: TicketPriority.HIGHEST,
-        status: TicketStatus.CANCELED,
-      }),
-    ]);
-    this.ticketsQuery.tickets$
-      .pipe(
-        take(1),
-        map((tickets) => tickets.length)
-      )
-      .subscribe((nextTicketNumber) => {
-        this.ticketsStore.update({ nextTicketNumber });
-      });
-  };
-
-  incrementNextTicketNumber = () => {
-    this.ticketsQuery.nextTicketNumber$
+    this.http
+      .get(this.url)
       .pipe(take(1))
-      .subscribe((nextTicketNumber) => {
-        this.ticketsStore.update({ nextTicketNumber: nextTicketNumber + 1 });
+      .subscribe((tickets: Array<Ticket>) => {
+        console.log(tickets);
+        this.ticketsStore.set(tickets);
       });
   };
 
   createTicket = (ticket: Ticket) => {
-    this.ticketsQuery.nextTicketNumber$.pipe(take(1)).subscribe((id) => {
-      this.ticketsStore.add(createTicket({ ...ticket, id }));
-      this.incrementNextTicketNumber();
-    });
+    this.http
+      .post(`${this.url}/create`, { ...ticket })
+      .pipe(take(1))
+      .subscribe((tickets: Array<Ticket>) => {
+        const ids = tickets.map((_ticket) => _ticket.id);
+        this.ticketsStore.upsert(ids, tickets);
+      });
   };
 
   update = (ticket: Ticket) => {
@@ -83,7 +47,14 @@ export class TicketsService {
       return;
     }
 
-    this.ticketsStore.update(ticket.id, ticket);
+    this.http
+      .post(`${this.url}/${ticket.id}`, {
+        ...ticket,
+      })
+      .pipe(take(1))
+      .subscribe((_ticket: Ticket) => {
+        this.ticketsStore.update(_ticket.id, _ticket);
+      });
   };
 
   setAll = (selected: boolean) => {
@@ -98,7 +69,20 @@ export class TicketsService {
   };
 
   complete = (id: ID) => {
-    this.ticketsStore.update(id, { status: TicketStatus.CLOSED });
+    this.ticketsQuery.tickets$
+      .pipe(
+        take(1),
+        map((tickets) => tickets.find((ticket) => ticket.id === id)),
+        switchMap((ticket) => {
+          return this.http.post(`${this.url}/${id}`, {
+            ...ticket,
+            status: TicketStatus.CLOSED,
+          } as Ticket);
+        })
+      )
+      .subscribe((ticket: Ticket) => {
+        this.ticketsStore.update(ticket.id, ticket);
+      });
   };
 
   deleteSelected = () => {
@@ -109,7 +93,12 @@ export class TicketsService {
         return;
       }
 
-      this.ticketsStore.remove(id);
+      this.http
+        .delete(`${this.url}/${id}`)
+        .pipe(take(1))
+        .subscribe(() => {
+          this.ticketsStore.remove(id);
+        });
     });
   };
 

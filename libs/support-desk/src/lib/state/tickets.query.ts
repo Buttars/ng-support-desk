@@ -36,8 +36,6 @@ export class TicketsQuery extends QueryEntity<TicketsState> {
     })
   );
 
-  nextTicketNumber$ = this.select((state) => state.nextTicketNumber);
-
   constructor(protected store: TicketsStore) {
     super(store);
   }
