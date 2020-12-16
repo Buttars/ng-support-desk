@@ -25,6 +25,7 @@ export class SupportComponent implements OnInit {
   allSelected$: Observable<boolean>;
   someSelected$: Observable<boolean>;
   sortBy$: Observable<TICKETS_SORT_BY>;
+  isLoading$: Observable<boolean>;
 
   constructor(
     private ticketsService: TicketsService,
@@ -36,6 +37,7 @@ export class SupportComponent implements OnInit {
     this.allSelected$ = this.ticketsQuery.allSelected$;
     this.someSelected$ = this.ticketsQuery.someSelected$;
     this.sortBy$ = this.ticketsQuery.sortBy$;
+    this.isLoading$ = this.ticketsQuery.selectLoading();
 
     const isSmall$ = breakpointObserver
       .observe([Breakpoints.Small])

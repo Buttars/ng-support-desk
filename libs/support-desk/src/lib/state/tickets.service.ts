@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import {
+  debounce,
+  delay,
   filter,
   map,
   mergeMap,
@@ -31,11 +33,13 @@ export class TicketsService {
   }
 
   initialize = () => {
+    this.ticketsStore.setLoading(true);
     this.http
       .get(this.url)
       .pipe(take(1))
       .subscribe((tickets: Array<Ticket>) => {
         this.ticketsStore.set(tickets);
+        this.ticketsStore.setLoading(false);
       });
   };
 

@@ -16,6 +16,7 @@ export class TicketListComponent implements OnInit {
   @Input() allSelected = false;
   @Input() someSelected = false;
   @Input() sortBy: TICKETS_SORT_BY;
+  @Input() isLoading = true;
   @Output() createTicket = new EventEmitter();
   @Output() editTicket = new EventEmitter<Ticket>();
   @Output() setAll = new EventEmitter();

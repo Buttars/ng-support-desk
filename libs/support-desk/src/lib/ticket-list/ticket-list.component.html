@@ -42,6 +42,12 @@
       </button>
     </div>
   </nb-card-header>
+  <ng-container
+    *ngTemplateOutlet="isLoading ? loading : content"
+  ></ng-container>
+</nb-card>
+
+<ng-template #content>
   <nb-list-item *ngFor="let ticket of tickets">
     <sd-ticket
       [ticket]="ticket"
@@ -49,4 +55,26 @@
       (editTicket)="editTicket.emit(ticket)"
     ></sd-ticket>
   </nb-list-item>
-</nb-card>
+</ng-template>
+
+<ng-template #loading>
+  <nb-list-item *ngFor="let a of [1, 2, 3, 4, 5, 6, 7]">
+    <div class="flex justify-between flex-1">
+      <div class="flex w-1/6">
+        <div class="flex w-4 mr-2 animated-background"></div>
+        <div class="flex w-16 animated-background"></div>
+      </div>
+      <div class="flex w-1/4 animated-background"></div>
+      <div class="flex w-1/6 justify-end chips">
+        <div class="flex justify-between w-full">
+          <sd-chip class="mr-2">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </sd-chip>
+          <sd-chip>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </sd-chip>
+        </div>
+      </div>
+    </div>
+  </nb-list-item>
+</ng-template>

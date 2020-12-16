@@ -4,6 +4,7 @@
   [allSelected]="(allSelected$ | async)!"
   [someSelected]="(someSelected$ | async)!"
   [sortBy]="(sortBy$ | async)!"
+  [isLoading]="isLoading$ | async"
   (createTicket)="createTicket()"
   (editTicket)="editTicket($event)"
   (setAll)="setAll($event)"
