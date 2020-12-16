@@ -103,18 +103,14 @@ export class TicketsService {
   };
 
   completeSelected = () => {
-    const tickets = this.ticketsQuery.getAll();
+    this.ticketsQuery.tickets$.pipe(take(1)).subscribe((tickets) => {
+      tickets.forEach(({ id, selected, status }) => {
+        if (!selected || status === TicketStatus.CANCELED) {
+          return;
+        }
 
-    tickets.forEach(({ id, selected, status }) => {
-      if (!selected) {
-        return;
-      }
-
-      if (status === TicketStatus.CANCELED) {
-        return;
-      }
-
-      this.complete(id);
+        this.complete(id);
+      });
     });
   };
 
