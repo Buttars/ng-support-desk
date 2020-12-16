@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 
 import { CreateTicketDto, Ticket } from '@ng-support-desk/api-interfaces';
 
@@ -19,7 +27,7 @@ export class AppController {
   }
 
   @Delete('tickets')
-  deleteTickets(@Param() { ids }) {
+  deleteTickets(@Query() { ids }) {
     return this.appService.deleteTickets(ids);
   }
 

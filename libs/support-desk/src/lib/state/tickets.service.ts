@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { filter, map, switchMap, take } from 'rxjs/operators';
+import {
+  filter,
+  map,
+  mergeMap,
+  startWith,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
 
 import { ID } from '@datorama/akita';
 
@@ -27,7 +35,6 @@ export class TicketsService {
       .get(this.url)
       .pipe(take(1))
       .subscribe((tickets: Array<Ticket>) => {
-        console.log(tickets);
         this.ticketsStore.set(tickets);
       });
   };
@@ -86,20 +93,20 @@ export class TicketsService {
   };
 
   deleteSelected = () => {
-    const tickets = this.ticketsQuery.getAll();
-
-    tickets.forEach(({ id, selected }) => {
-      if (!selected) {
-        return;
-      }
-
-      this.http
-        .delete(`${this.url}/${id}`)
-        .pipe(take(1))
-        .subscribe(() => {
-          this.ticketsStore.remove(id);
-        });
-    });
+    this.ticketsQuery.tickets$
+      .pipe(
+        take(1),
+        map((tickets) => tickets.filter((ticket) => ticket.selected)),
+        map((tickets) => tickets.map((ticket) => ticket.id)),
+        mergeMap((ids) => {
+          return this.http.delete(this.url, {
+            params: { ids: ids as Array<string> },
+          });
+        })
+      )
+      .subscribe((tickets: Array<Ticket>) => {
+        this.ticketsStore.set(tickets);
+      });
   };
 
   completeSelected = () => {

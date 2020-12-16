@@ -5,6 +5,7 @@ import {
   TicketPriority,
   TicketStatus,
 } from '@ng-support-desk/api-interfaces';
+import { tickets as mockTickets } from './tickets.mock';
 
 @Injectable()
 export class AppService {
@@ -18,40 +19,7 @@ export class AppService {
   }
 
   initalizeTickets = () => {
-    const tickets: Array<CreateTicketDto> = [
-      {
-        title: 'Ticket 0',
-        description: 'Test123',
-        status: 'active',
-        priority: 'low',
-      } as CreateTicketDto,
-      {
-        title: 'Ticket 1',
-        description: 'Test123',
-        priority: 'low',
-        status: 'active',
-      } as CreateTicketDto,
-      {
-        title: 'Ticket 2',
-        description: 'Test123',
-        priority: 'medium',
-        status: 'canceled',
-      } as CreateTicketDto,
-      {
-        title: 'Ticket 3',
-        description: 'Test123',
-        priority: 'high',
-        status: 'closed',
-      } as CreateTicketDto,
-      {
-        title: 'Ticket 4',
-        description: 'Test123',
-        priority: 'highest',
-        status: 'canceled',
-      } as CreateTicketDto,
-    ];
-
-    tickets.forEach((ticket) => {
+    mockTickets.forEach((ticket) => {
       this.createTicket(ticket);
     });
   };
@@ -70,13 +38,10 @@ export class AppService {
     );
   };
 
-  getTickets = (): Array<Ticket> => {
-    return this._tickets;
-  };
+  getTickets = (): Array<Ticket> => this._tickets;
 
-  getTicket = (id: string): Ticket => {
-    return this._tickets.find((ticket) => (ticket.id = id));
-  };
+  getTicket = (id: string): Ticket =>
+    this._tickets.find((ticket) => (ticket.id = id));
 
   createTicket = ({
     title,
@@ -110,18 +75,15 @@ export class AppService {
   };
 
   deleteTicket = (id: string) => {
-    const tickets = this._tickets.filter((ticket) => ticket.id !== id);
-    this._tickets = tickets;
-
-    return tickets;
+    this._tickets = this._tickets.filter((ticket) => ticket.id !== id);
+    return this._tickets;
   };
 
   deleteTickets = (ids: Array<string>) => {
-    const tickets = this._tickets.filter((ticket) =>
-      ids.includes(ticket.id as string)
-    );
-    this._tickets = tickets;
+    this._tickets = this._tickets.filter((ticket) => {
+      return !ids.includes(ticket.id as string);
+    });
 
-    return tickets;
+    return this._tickets;
   };
 }
