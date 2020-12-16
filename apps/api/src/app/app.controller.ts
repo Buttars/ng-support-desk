@@ -18,6 +18,11 @@ export class AppController {
     return this.appService.createTicket(createTicketDto);
   }
 
+  @Delete('tickets')
+  deleteTickets(@Param() { ids }) {
+    return this.appService.deleteTickets(ids);
+  }
+
   @Get('tickets/:id')
   getTicket(@Param() { id }): Ticket {
     return this.appService.getTicket(id);

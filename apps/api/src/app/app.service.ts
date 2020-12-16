@@ -115,4 +115,13 @@ export class AppService {
 
     return tickets;
   };
+
+  deleteTickets = (ids: Array<string>) => {
+    const tickets = this._tickets.filter((ticket) =>
+      ids.includes(ticket.id as string)
+    );
+    this._tickets = tickets;
+
+    return tickets;
+  };
 }
